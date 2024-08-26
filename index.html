@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>中国地图</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2.0" />
+
+    <link
+      href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      #map {
+        height: 100vh;
+      }
+    </style>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&libraries=places,geometry&callback=initMap&language=zh-CN"
+      async
+      defer
+    ></script>
+  </head>
+  <body class="bg-gray-100">
+    <header
+      class="sticky top-0 z-50 bg-blue-500 text-white py-4 flex justify-between items-center"
+    >
+      <h1 class="text-2xl font-bold ml-4">中国16大博物馆</h1>
+      <button
+        id="toggleViewBtn"
+        class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded mr-4"
+        onclick="toggleView()"
+      >
+        地图 ｜ 列表
+      </button>
+    </header>
+
+    <button
+      id="backToTopBtn"
+      class="hidden fixed bottom-10 right-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      onclick="backToTop()"
+    >
+      ^
+    </button>
+
+    <div id="map" class="w-full h-full"></div>
+
+    <div
+      id="myModal"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center"
+      style="z-index: 1000"
+    >
+      <div
+        style="max-height: 600px; overflow: scroll"
+        class="bg-white p-4 md:p-6 lg:p-8 max-w-2xl mx-auto rounded shadow-lg"
+      >
+        <div class="flex justify-between items-center border-b pb-2">
+          <h2 class="text-xl font-semibold" id="modal-title">弹窗标题</h2>
+          <span class="cursor-pointer" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="mt-4 max-h-[500px] overflow-auto" id="modal-text">
+          <!-- 动态内容将显示在这里 -->
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto p-4">
+      <ul id="museumList" class="divide-y divide-gray-200">
+        <!-- 博物馆项目将动态添加到这里 -->
+      </ul>
+    </div>
+    <footer class="text-center bg-gray-300 py-4">
+      <p>
+        参考资料：
+        <a href="https://www.sohu.com/a/676503418_121123853" target="_blank"
+          >https://www.sohu.com/a/676503418_121123853</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
